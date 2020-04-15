@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-4">
+        <input type="text" (keydown.enter)="searchProduct($event)" [(ngModel)]="query"
+         class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+    </div> 
+    <div>
+        <a name="" id="" class="btn btn-primary" role="button" (click)="searchProduct($event)" style="color: white">Buscar producto</a>
+    </div>
+    <div class="ml-2" *ngIf="mode == false">
+        <a class="btn btn-success"  role="button" style="color: white" (click)="addProductMonitor($event)" >Añadir seleccionados a monitoreados</a>
+    </div>
+</div>
+
+<div class="mt-2" >
+    <ul>
+        <app-product *ngFor="let product of productList" [uid] = product.uid [mode] = mode (checked)="checkedEvent($event)"></app-product>
+    </ul>
+
+    <div class="alert alert-danger" role="alert" *ngIf="productList.length==0">
+        <strong>Ningún producto concuerda con la búsqueda</strong>
+    </div>
+
+</div>
